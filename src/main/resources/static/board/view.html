@@ -12,38 +12,35 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div>Board List</div>
-		<div><a href="/board/form">/board/form BoardController form() /board/form.jsp</a></div>
-		<hr />
+		<div>View</div>
 		<div class="container">
-			<table class="table table-striped">
+			<table class="table">
 				<thead class="bg-info">
 					<tr>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>제목</th>
+						<th>작성자: 김용범</th>
+						<th>날짜: 2022/01/05</th>
+						<th>제목: Spring의 기초</th>
 					</tr>
 				</thead>
 				<tbody class="">
 					<tr>
-						<td>김용범</td>
-						<td>2022/01/05</td>
-						<td><a href="/board/view">Spring의 기초</a></td>
-					</tr>
-					<tr>
-						<td>김병근</td>
-						<td>2022/01/03</td>
-						<td><a href="/board/view">Mybatis란?</a></td>
-					</tr>
-					<tr>
-						<td>길진수</td>
-						<td>2022/01/1</td>
-						<td><a href="/board/view">JPA활용법</a></td>
+						<td colspan="3">
+							<div>
+								이번 포스팅에서는 인턴을 하게 된 회사에서 진행해준 신입사원 교육 중, Spring의 기초에 대해 정리해보려
+								합니다. Spring Boot로 프로젝트를 진행했던 경험이 있어서 Spring의 특징에 대해 어느 정도 알고 있다고
+								생각하고 있었는데, 이 교육을 듣고 Spring에 대해 한층 더 자세히 알게 되었습니다.......
+							</div>
+						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div>
-				<a href="/board/form"><button class="btn btn-primary">글쓰기</button></a>
+			<div class="container">
+				<form class="" action="/board/list">
+					<button class="btn btn-primary">목록</button>
+				</form>
+				<form action="/board/edit">
+					<button class="btn btn-primary">수정</button>
+				</form>
 			</div>
 		</div>
 		<script
