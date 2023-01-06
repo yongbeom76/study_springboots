@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,10 +12,28 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div>Main! JSP</div>
-		<div>Board</div>
-		<div><a href="/board/form">/board/form BoardController form() /board/form.jsp</a></div>
-		<div><a href="/board_our/list">/board_our/list BoardController list() /board_our/list.jsp</a></div>
+		<div>/board/form</div>
+		<form action="/board_our/save" method="post">
+			<div>
+				<label for="title">title</label>
+				<input type="text " class="form-control" name="title" id="title" />
+			</div>
+			<div>
+				<label for="userName">userName</label>
+				<input type="text" class="form-control" name="userName" id="userName" />
+			</div>
+			<div>
+				<label for="content">content</label>
+				<input type="text" class="form-control" name="content" id="content" />
+			</div>
+			<div>
+				<label for="date">content</label>
+				<input type="date" class="form-control" name="date" id="date" />
+			</div>
+			<div>
+				<button>submit</button>
+			</div>
+		</form>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
