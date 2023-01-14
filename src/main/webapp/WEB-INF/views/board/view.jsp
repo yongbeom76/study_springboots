@@ -13,23 +13,21 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div>View</div>
+		<div><a href="/board">게시판 홈</a></div>
 		<div class="container">
 			<table class="table">
 				<thead class="bg-info">
 					<tr>
-						<th>작성자: 김용범</th>
-						<th>날짜: 2022/01/05</th>
-						<th>제목: Spring의 기초</th>
+						<th>작성자: ${boardBean.userName}</th>
+						<th>날짜: ${boardBean.date}</th>
+						<th>제목: ${boardBean.title}</th>
 					</tr>
 				</thead>
 				<tbody class="">
 					<tr>
 						<td colspan="3">
 							<div>
-								이번 포스팅에서는 인턴을 하게 된 회사에서 진행해준 신입사원 교육 중, Spring의 기초에 대해 정리해보려
-								합니다. Spring Boot로 프로젝트를 진행했던 경험이 있어서 Spring의 특징에 대해 어느 정도 알고 있다고
-								생각하고 있었는데, 이 교육을 듣고 Spring에 대해 한층 더 자세히 알게 되었습니다.......
+								${boardBean.content}
 							</div>
 						</td>
 					</tr>
@@ -41,7 +39,10 @@
 				</form>
 				<form action="/board/edit">
 					<button class="btn btn-primary">수정</button>
+					<input type="hidden" name="title" value="${boardBean.title}">
+					<input type="hidden" name="index" value="${param.index}">
 				</form>
+				<%-- <a href="/board/edit?title=${boardBean.title}">a tag</a> 이거하고 똑같은 효과 --%>
 			</div>
 		</div>
 		<script

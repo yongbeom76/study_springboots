@@ -1,6 +1,7 @@
 package com.study.study_springboots.beans;
 
 public class BoardBean { // vo, dao, dto 다 같은 얘기. bean으로 통칭
+
     private String title;
     private String content;
     private String userName;

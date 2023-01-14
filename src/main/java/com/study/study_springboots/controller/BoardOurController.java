@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.study_springboots.beans.BoardBean;
@@ -33,7 +34,8 @@ public class BoardOurController {
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
-    public ModelAndView view(ModelAndView modelAndView) {
+    public ModelAndView view(@RequestParam String uid, ModelAndView modelAndView) {
+        System.out.println("uid :" + uid);
         DataInfors dataInfors = new DataInfors();
         BoardBean boardBean = dataInfors.getDataWithBoardBean();
         modelAndView.addObject(boardBean);

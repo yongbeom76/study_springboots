@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,34 +14,31 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div>Board List</div>
-		<div><a href="/board/form">/board/form BoardController form() /board/form.jsp</a></div>
+		
+		<div><a href="/board">게시판 홈</a></div>
 		<hr />
 		<div class="container">
 			<table class="table table-striped">
 				<thead class="bg-info">
 					<tr>
+						<th>번호</th>
 						<th>작성자</th>
 						<th>날짜</th>
 						<th>제목</th>
 					</tr>
 				</thead>
 				<tbody class="">
+					<c:forEach var="board" items="${boardList}" varStatus="status">
 					<tr>
-						<td>김용범</td>
-						<td>2022/01/05</td>
-						<td><a href="/board/view">Spring의 기초</a></td>
+						<th>${status.count}</th>
+						<td>${board.userName}</td>
+						<td>${board.date}</td>
+						<td><a href="/board/view?title=${board.title}&index=${status.index}">${board.title}</a></td>
 					</tr>
-					<tr>
-						<td>김병근</td>
-						<td>2022/01/03</td>
-						<td><a href="/board/view">Mybatis란?</a></td>
-					</tr>
-					<tr>
-						<td>길진수</td>
-						<td>2022/01/1</td>
-						<td><a href="/board/view">JPA활용법</a></td>
-					</tr>
+					</c:forEach>
+					
+      				<%-- <div>${board.title},${board.userName} : ${status.count}, ${status.index}, ${status.first}, ${status.last}</div> --%>
+    				
 				</tbody>
 			</table>
 			<div>

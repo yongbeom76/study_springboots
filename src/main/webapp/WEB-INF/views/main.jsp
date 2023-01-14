@@ -16,6 +16,7 @@
 		<div>Main! JSP</div>
 		<div>Board</div>
 		<div><a href="/board/form">/board/form BoardController form() /board/form.jsp</a></div>
+		<div><a href="/board/list">/board/list BoardController list() /board/list.jsp</a></div>
 		<div><a href="/board_our/list">/board_our/list BoardController list() /board_our/list.jsp</a></div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

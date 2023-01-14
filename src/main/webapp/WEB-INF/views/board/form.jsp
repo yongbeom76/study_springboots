@@ -13,10 +13,10 @@
 			crossorigin="anonymous" />
 	</head>
 	<body>
-		<div>/board/form</div>
+		<div><a href="/board">게시판 홈</a></div>
 		<hr />
 		<div class="container">
-			<form action="/board/form" method="post">
+			<form action="/board/save" method="post">
 				<table class="table align-middle">
 					<thead>
 						<tr>
