@@ -28,4 +28,10 @@ public class HomeController { // http://localhost:8080/home
         return "home.html";
     }
 
+    @RequestMapping(value = "/jstlformats")
+    public String jstlformats() {
+        int i = 0;
+        return "jstl_formats";
+    }
+
 }

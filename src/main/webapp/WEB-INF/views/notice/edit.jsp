@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -16,8 +17,8 @@
 		<div><a href="/notice/">게시판 홈</a></div>
 		<hr />
 		<div class="container">
-			<form action="/board/editSave" method="post">
-				<input type="hidden" name="index" value="${param.index}">
+			<form action="/notice/view" method="post">
+				<%-- <input type="hidden" name="index" value="${param.index}"> --%>
 				<table class="table align-middle">
 					<thead>
 						<tr>
@@ -28,25 +29,25 @@
 						<tr>
 							<td>작성자</td>
 							<td>
-								<input class="form-control" type="text" name="userName" id="" value="${boardBean.userName}" />
+								<input class="form-control" type="text" name="userName" id="userName" value="${boardBean.userName}" />
 							</td>
 						</tr>
 						<tr>
 							<td>날짜</td>
 							<td>
-								<input class="form-control" type="text" name="date" id="" value="${boardBean.date}" />
+								<input class="form-control" type="text" name="date" id="date" value="${boardBean.date}" />
 							</td>
 						</tr>
 						<tr>
 							<td>제목</td>
 							<td>
-								<input class="form-control" type="text" name="title" id="" value="${boardBean.title}" />
+								<input class="form-control" type="text" name="title" id="title" value="${boardBean.title}" />
 							</td>
 						</tr>
 						<tr>
 							<td>내용</td>
 							<td>
-								<textarea rows="10" class="form-control" name="content">${boardBean.content}</textarea>
+								<textarea rows="10" class="form-control" name="content" id="content">${boardBean.content}</textarea>
 							</td>
 						</tr>
 						<tr>
