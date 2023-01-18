@@ -3,6 +3,7 @@ package com.study.study_springboots.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,10 @@ import com.study.study_springboots.service.DataInfors;
 @Controller
 @RequestMapping(value = "/board_our")
 public class BoardOurController {
+
+    @Autowired
+    DataInfors dataInfors;
+
     @RequestMapping(value = "/edit", method = RequestMethod.POST) // "/board_our"
     public String edit() {
         return "board_our/edit";
@@ -28,7 +33,7 @@ public class BoardOurController {
     public ModelAndView list() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("firstString", "firstValue");
-        DataInfors dataInfors = new DataInfors();
+        // DataInfors dataInfors = new DataInfors();
         ArrayList<BoardBean> boardList = dataInfors.getDataListWithBoardBean();
         modelAndView.addObject("boardList", boardList);
         modelAndView.setViewName("board_our/list");
@@ -41,7 +46,7 @@ public class BoardOurController {
     @RequestMapping(value = "/view/{action_uid}", method = RequestMethod.GET)
     public ModelAndView view(@PathVariable String action_uid, ModelAndView modelAndView) {
         System.out.println("uid :" + action_uid);
-        DataInfors dataInfors = new DataInfors();
+        // DataInfors dataInfors = new DataInfors();
         BoardBean boardBean = dataInfors.getDataWithBoardBean();
         modelAndView.addObject(boardBean);
         modelAndView.setViewName("board_our/view");
