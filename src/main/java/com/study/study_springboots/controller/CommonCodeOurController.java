@@ -20,19 +20,32 @@ public class CommonCodeOurController {
     @Autowired
     CommonCodeOurService commonCodeOurService;
 
-    @GetMapping("/delete/{uniqueId}")
+    @PostMapping("/insert")
+    public ModelAndView insert(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        commonCodeOurService.insertOne(params);
+        modelAndView.setViewName("commonCode_our/list");
+        return modelAndView;
+    }
+
+    @GetMapping("/form")
+    public ModelAndView form(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        modelAndView.setViewName("commonCode_our/edit");
+        return modelAndView;
+    }
+
+    @PostMapping("/delete/{uniqueId}")
     public ModelAndView delete(@RequestParam Map<String, Object> params, @PathVariable String uniqueId,
             ModelAndView modelAndView) {
         params.put("COMMON_CODE_ID", uniqueId);
-        commonCodeOurService.delete(params);
+        Object resultMap = commonCodeOurService.deleteAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
     }
 
     @PostMapping("/update")
     public ModelAndView update(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        commonCodeOurService.updateOne(params);
-        Object resultMap = commonCodeOurService.getList(params);
+        Object resultMap = commonCodeOurService.updateAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("commonCode_our/list");
         return modelAndView;
