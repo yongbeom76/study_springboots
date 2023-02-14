@@ -3,18 +3,43 @@
 
 <mapper namespace="CommonCodeOur">
     <!-- call -->
-    <select id="selectListByUID" parameterType="Map" resultType="Map">
+    <select id="selectListByUID" 
+        parameterType="Map" resultType="Map">
         SELECT * 
         FROM CIP_COMMON_CODE
+        <!-- character data -->
+        <!-- where 조건을 구성하려면 > 꺽쇠를 넣어줘야 한다. 그런데 꺽쇠가 element 시작 기호하고 똑같다
+        특수기호가 아니라는 것을 알려주기 위한거다. 쿼리문에 들어가는 구문이라는 것을 표시하는 방법이다.
+        <![CDATA[  
+        
+        ]]>
+        이걸로 감싸주면 그 안에 있는 거를 쿼리문에 들어가는거라고 알려주게 된다. -->
+        <![CDATA[  
+        where ORDER_NUMBER >  0
+        ]]>
+        <if test="pageScale != null">
+        ORDER BY COMMON_CODE_ID
+        <!-- 첫번째 페이지 리스트 -->
+        LIMIT #{pageBegin}, #{pageScale}
+        </if>
+
     </select>
 
     <!-- call CommonCodeOur.selectByUID -->
-    <select id="selectByUID" parameterType="Map" resultType="Map">
+    <select id="selectByUID" 
+        parameterType="Map" resultType="Map">
         SELECT * 
         FROM CIP_COMMON_CODE
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </select>
     
+    <!-- call CommonCodeOur.selectTotal -->
+    <select id="selectTotal" 
+        parameterType="Map" resultType="int">
+        SELECT count(*) as cnt
+        FROM CIP_COMMON_CODE
+    </select>
+
     <!-- call CommonCodeOur.updateByUID -->
     <update id="updateByUID" parameterType="Map">
         UPDATE CIP_COMMON_CODE 
@@ -22,25 +47,38 @@
             MODIFY_DATE=sysdate()
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </update>
-    
+
     <!-- call CommonCodeOur.deleteByUID -->
     <delete id="deleteByUID" parameterType="Map">
         DELETE FROM CIP_COMMON_CODE
         WHERE COMMON_CODE_ID = #{COMMON_CODE_ID}
     </delete>
-    
+
+    <!-- call CommonCodeOur.deleteMultiByUIDs -->
+    <delete id="deleteMultiByUIDs" parameterType="Map">
+        DELETE FROM CIP_COMMON_CODE
+        WHERE COMMON_CODE_ID IN 
+            <foreach collection="deleteMultis" item="item" 
+                open="(" separator="," close=")">
+                #{item}
+            <!-- 'No', 'System_Code_YN' -->
+            </foreach>
+    </delete>
+
     <!-- call CommonCodeOur.insertWithUID -->
     <insert id="insertWithUID" parameterType="Map">
         insert into CIP_COMMON_CODE 
             (COMMON_CODE_ID,NAME,ORDER_NUMBER,ATTRIBUTION_1,ATTRIBUTION_2,DESCRIPTION,
-            SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFIER_SEQ,MODIFY_DATE) 
-        VALUE (#{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
+            SYSTEM_CODE_YN,USE_YN,PARENT_COMMON_CODE_ID,REGISTER_SEQ,REGISTRY_DATE,MODIFY_DATE,MODIFIER_SEQ) 
+        VALUE 
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{COMMON_CODE_ID},#{NAME},#{ORDER_NUMBER},NULL,NULL,#{DESCRIPTION}
             <choose>
                 <when test="SYSTEM_CODE_YN != null">
                     , 'Yes'
                 </when>
                 <otherwise>
-                    , 'No'
+                    ,'No'
                 </otherwise>
             </choose>
             <choose>
@@ -48,12 +86,13 @@
                     , 'Yes'
                 </when>
                 <otherwise>
-                    , 'No'
+                    ,'No'
                 </otherwise>
             </choose>
-            ,NULL,#{REGISTER_SEQ},sysdate(),#{MODIFIER_SEQ},sysdate())
-
+            ,NULL,#{REGISTER_SEQ},sysdate(),sysdate(),
+            <if test="MODIFIER_SEQ != null">
+            #{MODIFIER_SEQ},
+            </if>
+        </trim>
     </insert>
-
-    
 </mapper>

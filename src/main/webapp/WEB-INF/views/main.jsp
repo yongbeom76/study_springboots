@@ -21,6 +21,7 @@
 		<div><a href="/jstlformats">jstl_formats.jsp</a></div>
 		<div><a href="/commonCode/list">/commonCode/list.jsp</a></div>
 		<div><a href="/commonCodeOur/">/commonCodeOur/list.jsp</a></div>
+		<div><a href="/commonCodeOur/listPagination/1">/commonCodeOur/list_pagination.jsp</a></div>
 		
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"

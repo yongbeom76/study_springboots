@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# **/files/ 이렇게 하면 이 폴더가 ignore된다.
