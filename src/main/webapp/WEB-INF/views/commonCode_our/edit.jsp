@@ -5,6 +5,8 @@
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
 <input type="hidden" name="PARENT_COMMON_CODE_ID" value="${resultMap.PARENT_COMMON_CODE_ID}"
 	>
+<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="//cdn.quilljs.com/1.3.6/quill.js"></script>
 <div class="container">
 
 <c:set var="form_action" value="update" />
@@ -12,7 +14,7 @@
 	<c:set var="form_action" value="insert" />
 </c:if>
 
-<form action="/commonCodeOur/${form_action}" method="post" enctype="multipart/form-data">> //file upload 할 경우 enctyp넣어준다.
+<form id="action-form" action="/commonCodeOur/${form_action}" method="post" enctype="multipart/form-data">> //file upload 할 경우 enctyp넣어준다.
 <input type="hidden" name="REGISTER_SEQ" value="UUID-1111-1111111">
 <input type="hidden" name="MODIFIER_SEQ" value="UUID-1111-1111111">
 <input type="hidden" name="PARENT_COMMON_CODE_ID" value="${resultMap.PARENT_COMMON_CODE_ID}">
@@ -57,9 +59,11 @@
 		<label>설명 <span class="text-muted">(<spring:message
 					code="text.option" />)
 		</span></label>
-		<textarea class="form-control" rows="3" name="DESCRIPTION"
+		<%-- <textarea class="form-control" rows="3" name="DESCRIPTION"
 			placeholder=""
-			${statusDisabled}>${resultMap.DESCRIPTION }</textarea>
+			${statusDisabled}>${resultMap.DESCRIPTION }</textarea> --%>
+		<div id="editor" class="form-control"></div>
+		<input type="hidden" name="DESCRIPTION" id="description"/>
 	</div>
 </div>
 <div class="form-group form-row">
@@ -85,7 +89,7 @@
 <div class="row justify-content-between">
 	<div class="col">
 		
-			<button class="btn btn-primary"
+			<button class="btn btn-primary" id="submit-button"
 				>
 				${form_action}
 			</button>
@@ -99,6 +103,26 @@
 			
 		</button> --%>
 	</div>
+	<script>
+		var editor = new Quill('#editor', {
+			theme: 'snow'
+		});
+
+		// add content in Quill editor
+		editor.setContents(${resultMap.DESCRIPTION});
+		editor.disable();
+		editor.root.style.backgroundColor = '#f2f2f2';
+		
+		let submitButton = document.querySelector("#submit-button");
+		submitButton.addEventListener("click", function (event) {
+			let content = editor.getContents();
+			let description = document.querySelector("#description");
+			description.value = JSON.stringif(content);
+
+			let form = document.querySelector("#action-form");
+			form.submit();
+		});
+	</script>
 </div>
 </form>
 </div>

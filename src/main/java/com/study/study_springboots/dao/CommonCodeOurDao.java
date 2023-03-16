@@ -22,9 +22,12 @@ public class CommonCodeOurDao {
     public Object update(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.update(sqlMapId, dataMap);
         // update한 갯수가 리턴됨
+        // 실패하면 return 0
         return result;
     }
 
+    // insert한 갯수 리턴
+    // 실패시 return 0
     public Object insert(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
         return result;
@@ -33,6 +36,7 @@ public class CommonCodeOurDao {
     public Object delete(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.delete(sqlMapId, dataMap);
         // delete한 갯수가 리턴됨
+        // 실패시 return 0
         return result;
     }
 

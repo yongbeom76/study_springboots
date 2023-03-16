@@ -22,7 +22,7 @@
 		<div><a href="/commonCode/list">/commonCode/list.jsp</a></div>
 		<div><a href="/commonCodeOur/">/commonCodeOur/list.jsp</a></div>
 		<div><a href="/commonCodeOur/listPagination/1">/commonCodeOur/list_pagination.jsp</a></div>
-		
+		<div><a href="/commonCodeOur/form">/commonCodeOur/form</a></div>
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

@@ -18,10 +18,22 @@
 <nav aria-label="Page navigation example">
 	<c:set var="_pagination" value="${resultMap.paginations}"/>
 	<span>총 갯수: ${_pagination.totalCount}</span>
-	
+	<div>pageScale: ${_pagination.pageScale}</div>
+	<div>blockScale: ${_pagination.blockScale}</div>
+	<div>currentPage: ${_pagination.currentPage}</div>
+	<div>previousPage: ${_pagination.previousPage}</div>
+	<div>nextPage: ${_pagination.nextPage}</div>
+	<div>totalPage: ${_pagination.totalPage}</div>
+	<div>currentBlock: ${_pagination.currentBlock}</div>
+	<div>totalBlock: ${_pagination.totalBlock}</div>
+	<div>pageBegin: ${_pagination.pageBegin}</div>
+	<div>pageEnd: ${_pagination.pageEnd}</div>
+	<div>blockStart: ${_pagination.blockStart}</div>
+	<div>blockEnd: ${_pagination.blockEnd}</div>
+	<div>totalCount: ${_pagination.totalCount}</div>
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
+      <a class="page-link" href="/commonCodeOur/listPagination/${_pagination.previousPage}" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
@@ -31,7 +43,7 @@
 		<li class="page-item"><a class="page-link" href="/commonCodeOur/listPagination/${i}">${i}</a></li>
 	</c:forEach>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
+      <a class="page-link" href="/commonCodeOur/listPagination/${_pagination.nextPage}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>

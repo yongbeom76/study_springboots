@@ -17,6 +17,7 @@
         <![CDATA[  
         where ORDER_NUMBER >  0
         ]]>
+
         <if test="pageScale != null">
         ORDER BY COMMON_CODE_ID
         <!-- 첫번째 페이지 리스트 -->
